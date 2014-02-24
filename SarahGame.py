@@ -1,16 +1,22 @@
 #SarahGame
 
-import pygame
+import pygame, sys 
 
-pygame.init()
+from pygame.locals import * 
 
-screen = pygame.display.set_mode((640,480))
+pygame.init() 
 
-running=True
+DISPLAYSURF = pygame.display.set_mode((400, 300)) 
 
-while running:
+pygame.display.set_caption('Hello World!') 
+
+while True: # main game loop
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running=False
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_SLASH:
-            running=False
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.KEYDOWN and event.key ==  pygame.K_SLASH:
+            pygame.quit()
+            sys.exit()
+        
+    pygame.display.update()
