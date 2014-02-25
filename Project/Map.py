@@ -10,3 +10,7 @@ class Map:
             numberofObstacles=1 #sollte random nummer 0-3 sein
             sector = Sector.Sector(sectorid,numberofObstacles)
             self.sectors.append(sector)
+    
+    def getcurrentsector(self,xvalue):
+        return self.sectors[int(xvalue/600)]
+        
