@@ -1,12 +1,14 @@
 class Obstacle:
-    def __init__(self,id):
-        self.id = id
-        self.image = "Sector"+str(id)+".png"
-        self.x = 0
-        self.y = 0
+    def __init__(self,identity,x,y):
+        self.identity = identity
+        self.image = "Obstacle"+str(identity)+".png"
+        self.x = x
+        self.y = y
         self.width = 0
         self.height = 0
-        self.setxywidthheigt()
+        self.setwidthheigt()
         
-    def setxywidthheigt():
-        pass
+    def setwidthheigt(self):
+        if self.identity==1:
+            self.width = 30
+            self.height = 60

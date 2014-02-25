@@ -1,12 +1,13 @@
 import EventManager
 import Charactor
+import Map
 
 class Game:
     def __init__(self, evManager):
         self.evManager = evManager
         self.evManager.registerListener(self)
         self.charactor = Charactor.Charactor()
-        #map initialisieren
+        self.mappe = Map.Map()
         #reward initialisieren
         #enemies initialisieren (Array von Enemies)
     

@@ -15,6 +15,10 @@ class KeyboardController:
                 if event.type == KEYDOWN and event.key == K_LEFT:
                     direction = "DIRECTION_LEFT"
                     ev = "LeftRequest"
+                elif event.type == QUIT:
+                    ev = QuitEvent()
+                elif event.type == KEYDOWN and event.key == K_ESCAPE:
+                    ev = QuitEvent()
 
         if ev:
             self.evManager.post( ev )

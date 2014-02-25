@@ -12,7 +12,8 @@ if __name__ == "__main__":
 
 	keybd = KeyboardController.KeyboardController( evManager )
 	spinner = CPUSpinnerController.CPUSpinnerController( evManager )
-	pygameView = PygameView.PygameView( evManager )
 	game = Game.Game( evManager )
+	pygameView = PygameView.PygameView( evManager,game )
+	
 	
 	spinner.Run()

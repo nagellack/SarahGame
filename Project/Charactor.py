@@ -1,11 +1,12 @@
 class Charactor:
     def __init__(self):
         self.name = "Sarah"
-        self.widht = 0
-        self.height = 0
+        self.x = 30
+        self.y = 210
         self.steplength = 2
         self.jumpheight = 2
         self.nailcolor = "Red"
+        self.image = 'Sarah.png'
         
     
     def move(self,direction,sectors):
