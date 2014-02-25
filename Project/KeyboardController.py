@@ -6,6 +6,7 @@ class KeyboardController:
         self.evManager = evManager
         self.evManager.registerListener(self)
         pygame.init()
+        pygame.key.set_repeat(1, 10)
 
     def Notify(self, event):
         ev=None
@@ -20,7 +21,6 @@ class KeyboardController:
                 elif event.type == KEYDOWN and event.key == K_ESCAPE:
                     ev = QuitEvent()
                 elif event.type == KEYDOWN and event.key == K_RIGHT:
-                        ev = "RightRequest"
-                        
+                        ev = "RightRequest"                     
         if ev:
             self.evManager.post( ev )
