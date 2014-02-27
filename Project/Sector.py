@@ -30,6 +30,6 @@ class Sector:
                 possibility = 0
             else:
                 return 1
-        return possibility
-        
+        return 0
+    
             
