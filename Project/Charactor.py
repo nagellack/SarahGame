@@ -15,6 +15,7 @@ class Charactor:
     
     def gravity(self, sector):
         if self.isjumping==0:
+            print 'gravity'
             newy = self.y+2
             if sector.hasObstacle([self.x,newy],self.width,self.height)==0:
                 self.y = newy
@@ -30,7 +31,6 @@ class Charactor:
         else:
             return 0
         self.isjumping += 1
-        print self.isjumping
         if self.isjumping == 9:
             self.isjumping=0
         return 1
@@ -80,6 +80,9 @@ class Charactor:
                 self.y = newy
             else:
                 return 0
+            self.isjumping += 1
+            if self.isjumping == 9:
+                self.isjumping=0
         if direction == "LeftUp" or direction == "UpLeft":
             newx = self.x - self.steplength
             newy = self.y - self.jumpheight #(self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
@@ -88,4 +91,7 @@ class Charactor:
                 self.y = newy
             else:
                 return 0
+            self.isjumping += 1
+            if self.isjumping == 9:
+                self.isjumping=0
         return 1
