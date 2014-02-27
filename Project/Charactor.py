@@ -30,7 +30,6 @@ class Charactor:
             self.isjumping=0
             return 0
         self.isjumping += 1
-        print self.isjumping
         if self.isjumping >= 9:
             self.isjumping=0
         return 1
