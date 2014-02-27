@@ -49,4 +49,12 @@ class Game:
             currentS = self.getCurrentSectors()
             if self.charactor.jump(currentS):
                 self.evManager.post("MoveEvent")
+        elif event == "JumpRight":
+            currentS = self.getCurrentSectors()
+            if self.charactor.jumpright(currentS):
+                self.evManager.post("MoveEvent")
+        elif event == "JumpLeft":
+            currentS = self.getCurrentSectors()
+            if self.charactor.jumpleft(currentS):
+                self.evManager.post("MoveEvent")
         
