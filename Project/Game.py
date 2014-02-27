@@ -1,5 +1,6 @@
 import EventManager
 import Charactor
+import Enemy
 import Map
 
 class Game:
@@ -7,6 +8,7 @@ class Game:
         self.evManager = evManager
         self.evManager.registerListener(self)
         self.charactor = Charactor.Charactor()
+        self.enemy = Enemy.Enemy()
         self.mappe = Map.Map()
         #reward initialisieren
         #enemies initialisieren (Array von Enemies)
@@ -49,4 +51,10 @@ class Game:
             currentS = self.getCurrentSectors()
             if self.charactor.jump(currentS):
                 self.evManager.post("MoveEvent")
+        elif event == "Enemy":
+            currentS = self.getCurrentSectors()
+            if self.enemy.move(currentS):
+                print 1
+                self.evManager.post("MoveEvent")
+            
         

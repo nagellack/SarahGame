@@ -13,6 +13,7 @@ class KeyboardController:
         ev=None
         if event=="TickEvent":
             self.evManager.post('Gravity')
+            self.evManager.post('Enemy')
             if self.jumpstarted!=0:
                 key = pygame.key.get_pressed()
                 ev = 'Jump'

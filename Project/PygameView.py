@@ -17,6 +17,12 @@ class PygameView:
         self.charrect.topleft = (self.character.x,self.character.y)
         self.screen.blit(self.charimage,self.charrect)
         
+        self.enemy = self.game.enemy
+        self.enemimage = pygame.image.load(self.enemy.image)
+        self.enemrect = self.enemimage.get_rect()
+        self.enemrect.topleft = (self.enemy.x,self.enemy.y)
+        self.screen.blit(self.enemimage,self.enemrect)
+        
         obstacles = self.sector.obstacles
         for obst in obstacles:
             obstimage = pygame.image.load(obst.image)
@@ -32,8 +38,14 @@ class PygameView:
     def Notify(self, event):
         if event == 'MoveEvent':
             self.charrect.topleft = (self.character.x,self.character.y)
+
             self.screen.blit(pygame.image.load(self.sector.image),[0,0,600,400])
+            
             self.screen.blit(self.charimage,self.charrect)
+            
+            self.enemrect.topleft = (self.enemy.x,self.enemy.y)
+            self.screen.blit(self.enemimage,self.enemrect)
+            
             obstacles = self.sector.obstacles
             for obst in obstacles:
                 obstimage = pygame.image.load(obst.image)

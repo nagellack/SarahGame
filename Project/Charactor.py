@@ -15,7 +15,6 @@ class Charactor:
     
     def gravity(self, sector):
         if self.isjumping==0:
-            print 'gravity'
             newy = self.y+2
             if sector.hasObstacle([self.x,newy],self.width,self.height)==0:
                 self.y = newy
