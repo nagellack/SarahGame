@@ -5,16 +5,57 @@ class Charactor:
         self.absoultex = self.x
         self.y = 210
         self.steplength = 2
-        self.jumpheight = 2
+        self.jumpheight = 15
         self.nailcolor = "Red"
         self.image = 'Sarah.png'
+        self.width = 20
+        self.height = 40
+        self.maximumjumpheight = 60
+        self.isjumping = 2
         
     
     def move(self,direction,sector):
         #check if with steplength 2 and jumheight 2 you can make a move in direction
-        # return 1 if can move 0 otherwise
+                
         if direction == "Right":
-            self.x += self.steplength
+            newx = self.x + self.steplength
+            newy = self.y
+            if sector.hasObstacle([newx,newy],self.width,self.height)==0:
+                self.x = newx
+                self.y = newy
+            else:
+                return 0
+            
         if direction == "Left":
-            self.x -= self.steplength
+            newx = self.x - self.steplength
+            newy = self.y
+            if sector.hasObstacle([newx,newy],self.width,self.height)==0:
+                self.x = newx
+                self.y = newy
+            else:
+                return 0
+        if direction == "Up":
+            newx = self.x 
+            newy = self.y + (self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
+            if sector.hasObstacle([newx,newy],self.width,self.height)==0:
+                self.x = newx
+                self.y = newy
+            else:
+                return 0
+        if direction == "RightUp" or direction == "UpRight":
+            newx = self.x + self.steplength
+            newy = self.y + (self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
+            if sector.hasObstacle([newx,newy],self.width,self.height)==0:
+                self.x = newx
+                self.y = newy
+            else:
+                return 0
+        if direction == "LeftUp" or direction == "UpLeft":
+            newx = self.x - self.steplength
+            newy = self.y + (self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
+            if sector.hasObstacle([newx,newy],self.width,self.height)==0:
+                self.x = newx
+                self.y = newy
+            else:
+                return 0
         return 1

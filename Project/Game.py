@@ -33,3 +33,6 @@ class Game:
             self.processMoveRequest('Left')
         elif event == "RightRequest":
             self.processMoveRequest('Right')
+        elif event == "UpRequest":
+            self.processMoveRequest('Up')
+        

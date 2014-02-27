@@ -15,7 +15,17 @@ class Sector:
             y = 190
             self.obstacles.append(Obstacle.Obstacle(obstid,x,y))
             
-    def hasObstacle(desiredPosition):
+    def hasObstacle(self,desiredPosition,charwidth,charheight):
         # returns 1 if it has an obstacle and 0 if it hasn in direction 
-        return 0
+        desx = desiredPosition[0]
+        desy = desiredPosition[1]
+        possibility = 0
+        
+        for obst in self.obstacles:
+            if (desx<=(obst.x-charwidth) or desx>=(obst.x+obst.width)) or (desy<=(obst.y-charheight) or desy >= (obst.y+obst.height)):
+                possibility = 0
+            else:
+                possibility=1
+        return possibility
+        
             
