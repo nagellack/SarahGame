@@ -17,11 +17,13 @@ class PygameView:
         self.charrect.topleft = (self.character.x,self.character.y)
         self.screen.blit(self.charimage,self.charrect)
         
-        self.enemy = self.game.enemy
-        self.enemimage = pygame.image.load(self.enemy.image)
-        self.enemrect = self.enemimage.get_rect()
-        self.enemrect.topleft = (self.enemy.x,self.enemy.y)
-        self.screen.blit(self.enemimage,self.enemrect)
+        enemies = self.sector.enemies
+        for enemy in enemies:
+            enemimage = pygame.image.load(enemy.image)
+            enemrect = enemimage.get_rect()
+            enemrect.topleft = (enemy.x,enemy.y)
+              
+            self.screen.blit(enemimage,enemrect)
         
         obstacles = self.sector.obstacles
         for obst in obstacles:
@@ -43,8 +45,15 @@ class PygameView:
             
             self.screen.blit(self.charimage,self.charrect)
             
-            self.enemrect.topleft = (self.enemy.x,self.enemy.y)
-            self.screen.blit(self.enemimage,self.enemrect)
+            enemies = self.sector.enemies
+            for enemy in enemies:
+                enemimage = pygame.image.load(enemy.image)
+                enemrect = enemimage.get_rect()
+                enemrect.topleft = (enemy.x,enemy.y)
+              
+                self.screen.blit(enemimage,enemrect)
+            
+            
             
             obstacles = self.sector.obstacles
             for obst in obstacles:

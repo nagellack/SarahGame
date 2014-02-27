@@ -4,7 +4,7 @@ class Charactor:
         self.x = 30
         self.absoultex = self.x
         self.y = 210
-        self.steplength = 2
+        self.steplength = 10
         self.jumpheight = 5
         self.nailcolor = "Red"
         self.image = 'Sarah.png'

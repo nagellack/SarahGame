@@ -1,10 +1,10 @@
 class Enemy:
-    def __init__(self):
+    def __init__(self,identity,xpos):
         self.name = "Pawlettchen"
-        self.x = 400
+        self.x = xpos
         self.absoultex = self.x
         self.y = 210
-        self.steplength = 10
+        self.steplength = 15
         self.jumpheight = 15
         self.nailcolor = "Red"
         self.image = 'pawlettchen.png'
@@ -14,7 +14,6 @@ class Enemy:
         self.direction = "Left"
 
     def move(self,sector):
-        print self.x
         a = 1
         if self.direction == "Right":
             newx = self.x + self.steplength
@@ -38,5 +37,8 @@ class Enemy:
             else:
                 self.direction="Right"
                 a =  0
+            if newx <=0:
+                self.direction="Right"
+                a = 0
                 
         return a

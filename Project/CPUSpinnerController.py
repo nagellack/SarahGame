@@ -1,4 +1,6 @@
 import EventManager
+import pygame
+
 class CPUSpinnerController:
 	"""..."""
 	def __init__(self, evManager):
@@ -9,9 +11,11 @@ class CPUSpinnerController:
 
 	#----------------------------------------------------------------------
 	def Run(self):
+		clock = pygame.time.Clock()
 		while self.keepGoing:
 			event = "TickEvent"
 			self.evManager.post( event )
+			clock.tick(10)
 
 	#----------------------------------------------------------------------
 	def Notify(self, event):
