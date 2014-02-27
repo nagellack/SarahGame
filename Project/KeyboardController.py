@@ -13,7 +13,7 @@ class KeyboardController:
         ev=None
         if event=="TickEvent":
             self.evManager.post('Gravity')
-            self.evManager.post('Enemy')
+            #self.evManager.post('Enemy')
             if self.jumpstarted!=0:
                 evj = "Jump"
                 key = pygame.key.get_pressed()
@@ -25,6 +25,7 @@ class KeyboardController:
                 self.jumpstarted +=1
                 if self.jumpstarted==10:
                     self.jumpstarted=0
+                    self.evManager.post('stopjump')
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_LEFT:
                     direction = "DIRECTION_LEFT"
