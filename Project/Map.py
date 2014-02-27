@@ -6,9 +6,10 @@ class Map:
         self.initSectors()
     
     def initSectors(self):
-        for sectorid in range(10):
+        for sectorid in range(5):
             numberofObstacles=1 #sollte random nummer 0-3 sein
-            sector = Sector.Sector(sectorid,numberofObstacles)
+            numberofEnemies=3
+            sector = Sector.Sector(sectorid,numberofObstacles,numberofEnemies)
             self.sectors.append(sector)
     
     def getcurrentsector(self,xvalue):

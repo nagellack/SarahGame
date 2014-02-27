@@ -8,7 +8,7 @@ class Game:
         self.evManager = evManager
         self.evManager.registerListener(self)
         self.charactor = Charactor.Charactor()
-        self.enemy = Enemy.Enemy()
+        self.enemies = []
         self.mappe = Map.Map()
         #reward initialisieren
         #enemies initialisieren (Array von Enemies)
@@ -56,6 +56,9 @@ class Game:
             currentS = self.getCurrentSectors()
             if self.enemy.move(currentS):
                 self.evManager.post("MoveEvent")
+            for enemy in currentS.enemies:
+                if enemy.move(currentS): 
+                    self.evManager.post("MoveEvent")
             
 
         elif event == "JumpRight":
