@@ -6,6 +6,7 @@ import CPUSpinnerController
 
 
 
+
 if __name__ == "__main__":
 	"""..."""
 	evManager = EventManager.EventManager()

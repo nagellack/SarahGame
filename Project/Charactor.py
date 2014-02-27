@@ -5,7 +5,7 @@ class Charactor:
         self.absoultex = self.x
         self.y = 210
         self.steplength = 2
-        self.jumpheight = 5
+        self.jumpheight = 10
         self.nailcolor = "Red"
         self.image = 'Sarah.png'
         self.width = 20
@@ -15,7 +15,7 @@ class Charactor:
     
     def gravity(self, sector):
         if self.isjumping==0:
-            newy = self.y+2
+            newy = self.y+5
             if sector.hasObstacle([self.x,newy],self.width,self.height)==0:
                 self.y = newy
             else:
@@ -63,7 +63,9 @@ class Charactor:
         if self.isjumping >= 9:
             self.isjumping=0
         return 1
-        
+     
+    def stopjump(self):
+        self.isjumping=0   
     
     def move(self,direction,sector):
         #check if with steplength 2 and jumheight 2 you can make a move in direction

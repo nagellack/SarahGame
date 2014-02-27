@@ -14,7 +14,6 @@ class Enemy:
         self.direction = "Left"
 
     def move(self,sector):
-        print self.x
         a = 1
         if self.direction == "Right":
             newx = self.x + self.steplength
