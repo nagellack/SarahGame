@@ -51,10 +51,21 @@ class Game:
             currentS = self.getCurrentSectors()
             if self.charactor.jump(currentS):
                 self.evManager.post("MoveEvent")
+<<<<<<< HEAD
         elif event == "Enemy":
             currentS = self.getCurrentSectors()
             if self.enemy.move(currentS):
                 print 1
                 self.evManager.post("MoveEvent")
             
+=======
+        elif event == "JumpRight":
+            currentS = self.getCurrentSectors()
+            if self.charactor.jumpright(currentS):
+                self.evManager.post("MoveEvent")
+        elif event == "JumpLeft":
+            currentS = self.getCurrentSectors()
+            if self.charactor.jumpleft(currentS):
+                self.evManager.post("MoveEvent")
+>>>>>>> FETCH_HEAD
         
