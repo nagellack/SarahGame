@@ -35,4 +35,18 @@ class Game:
             self.processMoveRequest('Right')
         elif event == "UpRequest":
             self.processMoveRequest('Up')
+        elif event == "RightUpRequest":
+            self.processMoveRequest('RightUp')
+        elif event == "LeftUpRequest":
+            self.processMoveRequest('LeftUp')
+        elif event == "DownRequest":
+            self.processMoveRequest('Down')
+        elif event == "Gravity":
+            currentS = self.getCurrentSectors()
+            if self.charactor.gravity(currentS):
+                self.evManager.post("MoveEvent")
+        elif event == "Jump":
+            currentS = self.getCurrentSectors()
+            if self.charactor.jump(currentS):
+                self.evManager.post("MoveEvent")
         

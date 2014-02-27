@@ -12,11 +12,11 @@ class KeyboardController:
     def Notify(self, event):
         ev=None
         if event=="TickEvent":
-            if self.jumpstarted != 0:
-                ev = "UpRequest"
-                if self.jumpstarted<7:
-                    self.jumpstarted+=1
-                else:
+            self.evManager.post('Gravity')
+            if self.jumpstarted!=0:
+                self.evManager.post('Jump')
+                self.jumpstarted +=1
+                if self.jumpstarted==10:
                     self.jumpstarted=0
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_LEFT:
@@ -28,11 +28,18 @@ class KeyboardController:
                     ev = QuitEvent()
                 if event.type == KEYDOWN and event.key == K_RIGHT:
                     ev = "RightRequest" 
-                    print 'right'
                 if event.type == KEYDOWN and event.key == K_UP:
-                    ev = "UpRequest"
-                    if self.jumpstarted == 0:
-                        self.jumpstarted = 1
+                    self.jumpstarted = 1
+                    """ev = "UpRequest"
+                    print 'upreq'
+                    key = pygame.key.get_pressed()
+                    if key[K_RIGHT]:
+                        ev="RightUpRequest"
+                        print 'here'
+                    if key[K_LEFT]:
+                        ev="LeftUpRequest"
+                if event.type == KEYDOWN and event.key == K_DOWN:
+                    ev='DownRequest' """
                                                                  
         if ev:
             self.evManager.post( ev )
