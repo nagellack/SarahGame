@@ -13,6 +13,8 @@ class Charactor:
         self.maximumjumpheight = 60
         self.isjumping = 0
         self.rewardcount = 0
+        self.isalive = 1
+        self.fighting = 0
     
     def gravity(self, sector):
         if self.isjumping==0:
@@ -66,7 +68,25 @@ class Charactor:
         return 1
      
     def stopjump(self):
-        self.isjumping=0   
+        self.isjumping=0  
+        
+    def isdying(self,sector):
+        #pruefen ob enemy sie trifft 
+        #wenn sie nicht kaempft dann sterben
+        #wenn sie kaempft dann enemy stirbt
+        for enemy in sector.enemies:
+            if (self.x<=(enemy.x-self.width) or self.x>=(enemy.x+enemy.width)) or (self.y<=(enemy.y-self.height) or self.y >= (enemy.y+enemy.height)):
+                self.isalive = 1
+            else:
+                if self.fighting:
+                    self.isalive=1
+                    enemy.isalive=0
+                else:
+                    self.isalive=0
+                    return 1
+        return 0
+            
+    
     
     def move(self,direction,sector):
         #check if with steplength 2 and jumheight 2 you can make a move in direction
