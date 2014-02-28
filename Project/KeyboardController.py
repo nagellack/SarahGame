@@ -14,6 +14,7 @@ class KeyboardController:
         if event=="TickEvent":
             self.evManager.post('Gravity')
             self.evManager.post('Enemy')
+            self.evManager.post('Alive')
             if self.jumpstarted!=0:
                 evj = "Jump"
                 key = pygame.key.get_pressed()
@@ -49,6 +50,10 @@ class KeyboardController:
                         ev="LeftUpRequest" """
                 if event.type == KEYDOWN and event.key == K_DOWN:
                     ev='DownRequest' 
+                if event.type == KEYDOWN and event.key == K_f:
+                    ev='Fighting' 
+                if event.type == KEYUP and event.key == K_f:
+                    ev='NOFighting' 
                                                                  
         if ev:
             self.evManager.post( ev )

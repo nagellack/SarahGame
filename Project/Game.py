@@ -69,5 +69,13 @@ class Game:
                 self.evManager.post("MoveEvent")
         elif event == "Stopjump":
             self.charactor.stopjump()
+        elif event == "Alive":
+            currentS = self.getCurrentSectors()
+            self.charactor.isdying(currentS)
+        elif event == "Fighting":
+            self.charactor.fighting = 1
+        elif event == "NOFighting":
+            print  'nofighting'
+            self.charactor.fighting = 0
 
         

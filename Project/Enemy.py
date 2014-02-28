@@ -4,7 +4,7 @@ class Enemy:
         self.x = xpos
         self.absoultex = self.x
         self.y = 210
-        self.steplength = 15
+        self.steplength = 5
         self.jumpheight = 15
         self.nailcolor = "Red"
         self.image = 'pawlettchen.png'
@@ -12,6 +12,7 @@ class Enemy:
         self.height = 40
         self.maximumjumpheight = 60
         self.direction = "Left"
+        self.alive = 1
 
     def move(self,sector):
         a = 1
