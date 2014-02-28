@@ -55,8 +55,8 @@ class Game:
         elif event == "Enemy":
             currentS = self.getCurrentSectors()
             for enemy in currentS.enemies:
-                if enemy.move(currentS): 
-                    self.evManager.post("MoveEvent")
+                enemy.move(currentS)
+                #    self.evManager.post("MoveEvent")
             
 
         elif event == "JumpRight":

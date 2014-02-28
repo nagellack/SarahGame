@@ -25,7 +25,7 @@ class KeyboardController:
                 self.jumpstarted +=1
                 if self.jumpstarted==10:
                     self.jumpstarted=0
-                    self.evManager.post('stopjump')
+                    self.evManager.post('Stopjump')
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_LEFT:
                     direction = "DIRECTION_LEFT"

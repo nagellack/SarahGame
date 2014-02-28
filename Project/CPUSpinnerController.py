@@ -15,7 +15,7 @@ class CPUSpinnerController:
 		while self.keepGoing:
 			event = "TickEvent"
 			self.evManager.post( event )
-			clock.tick(10)
+			clock.tick(30)
 
 	#----------------------------------------------------------------------
 	def Notify(self, event):
