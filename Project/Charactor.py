@@ -12,6 +12,7 @@ class Charactor:
         self.height = 40
         self.maximumjumpheight = 60
         self.isjumping = 0
+        self.rewardcount = 0
         self.isalive = 1
         self.fighting = 0
         
@@ -102,6 +103,8 @@ class Charactor:
             newx = self.x + self.steplength
             newy = self.y
             if sector.hasObstacle([newx,newy],self.width,self.height)==0:
+                if sector.hasReward([newx,newy],self.width,self.height)==1:
+                    self.rewardcount += 1
                 self.x = newx
                 self.y = newy
                 if self.isjumping==0:
@@ -118,6 +121,8 @@ class Charactor:
             newx = self.x - self.steplength
             newy = self.y
             if sector.hasObstacle([newx,newy],self.width,self.height)==0:
+                if sector.hasReward([newx,newy],self.width,self.height)==1:
+                    self.rewardcount += 1
                 self.x = newx
                 self.y = newy
                 if self.isjumping==0:
@@ -129,20 +134,26 @@ class Charactor:
                 self.gravity(sector)
                 self.isjumping=0
                 return 0
+            
         if direction == "Up":
             newx = self.x 
             newy = self.y - self.jumpheight #(self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
             if sector.hasObstacle([newx,newy],self.width,self.height)==0:
+                if sector.hasReward([newx,newy],self.width,self.height)==1:
+                    self.rewardcount += 1
                 self.x = newx
                 self.y = newy
             else:
                 self.gravity(sector)
                 self.isjumping=0
                 return 0
+            
         if direction == "Down":
             newx = self.x 
             newy = self.y + self.jumpheight #(self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
             if sector.hasObstacle([newx,newy],self.width,self.height)==0:
+                if sector.hasReward([newx,newy],self.width,self.height)==1:
+                    self.rewardcount += 1
                 self.x = newx
                 self.y = newy
             else:

@@ -37,6 +37,15 @@ class PygameView:
             self.screen.blit(self.sectorimg,self.charrect,self.charrect)
             self.screen.blit(self.sectorimg,[0,0,600,400])
             self.charimage = pygame.image.load(self.character.image)
+
+            self.screen.blit(self.charimage,self.charrect)
+
+            # display Rewards
+            font = pygame.font.Font(None, 36)
+            text = font.render('Munition: ' + str(self.character.rewardcount), 1, (10, 10, 10))
+            textpos = text.get_rect(centerx=self.screen.get_width()/2)
+            self.screen.blit(text, textpos)
+
             if self.character.isalive:
                 print 'alive'
                 self.screen.blit(self.charimage,self.charrect)
@@ -61,6 +70,14 @@ class PygameView:
                 obstrect.topleft = (obst.x,obst.y)
             
                 self.screen.blit(obstimage, obstrect)
+
+            rewards = self.sector.rewards
+            for rew in rewards:
+                rewimage = pygame.image.load(rew.image)
+                rewrect = rewimage.get_rect()
+                rewrect.topleft = (rew.x,rew.y)
+
+                self.screen.blit(rewimage, rewrect)
             
             pygame.display.flip()
     
