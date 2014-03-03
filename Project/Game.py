@@ -10,6 +10,7 @@ class Game:
         self.charactor = Charactor.Charactor()
         self.enemies = []
         self.mappe = Map.Map()
+        self.ispause = 0
         #reward initialisieren
         #enemies initialisieren (Array von Enemies)
     
@@ -38,6 +39,10 @@ class Game:
     def Notify(self, event):
         if event == "LeftRequest":
             self.processMoveRequest('Left')
+        elif event == "Pause":
+            self.ispause = 1
+        elif event == "noPause":
+            self.ispause = 0
         elif event == "RightRequest":
             self.processMoveRequest('Right')
         elif event == "UpRequest":
@@ -58,10 +63,11 @@ class Game:
                 self.evManager.post("MoveEvent")
 
         elif event == "Enemy":
-            currentS = self.getCurrentSectors()
-            for enemy in currentS.enemies:
-                enemy.move(currentS)
-                #    self.evManager.post("MoveEvent")
+            if self.ispause == 0:
+                currentS = self.getCurrentSectors()
+                for enemy in currentS.enemies:
+                    enemy.move(currentS)
+                    #    self.evManager.post("MoveEvent")
             
 
         elif event == "JumpRight":
@@ -83,5 +89,7 @@ class Game:
         elif event == "NOFighting":
             print  'nofighting'
             self.charactor.fighting = 0
+
+        
 
         

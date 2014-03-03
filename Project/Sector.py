@@ -7,6 +7,7 @@ class Sector:
     def __init__(self,identity,numObstacles,numEnemies,numRewards):
         self.identity = identity+1
         self.image = "Sector"+str(self.identity)+".png"
+        self.pauseimage = "Pause.png"
         self.numObstacles = numObstacles
         self.obstacles = []
         self.initObstacles()
