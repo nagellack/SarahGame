@@ -38,7 +38,6 @@ class Charactor:
         newy = self.y - self.jumpheight #(self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
         if sector.hasObstacle([self.x,newy],self.width,self.height)==0:
             self.y = newy
-            print self.image
             if self.image == self.movingright or self.image==self.standingright or self.image == self.jumpingright:
                 self.image = self.jumpingright
             else:
@@ -100,6 +99,7 @@ class Charactor:
                 else:
                     if self.fighting:
                         self.isalive=1
+                        sector.enemies.remove(enemy)
                         enemy.alive=0
                     else:
                         self.isalive=0

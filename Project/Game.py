@@ -82,8 +82,9 @@ class Game:
             self.charactor.image = "sarahfight.png"
             self.charactor.fighting = 1
         elif event == "NOFighting":
-            self.charactor.image = "sarah.png"
-            self.charactor.fighting = 0
+            if self.charactor.fighting:
+                self.charactor.image = "sarah.png"
+                self.charactor.fighting = 0
         elif event == "Fainting":
             self.charactor.faint()
             
