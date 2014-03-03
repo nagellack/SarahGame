@@ -9,8 +9,8 @@ class PygameView:
         pygame.init()
         self.screen = pygame.display.set_mode((600,400),DOUBLEBUF)
         self.screen.set_alpha(None)
-        
-        self.sector = self.game.mappe.sectors[0]
+        self.sectorcount = 0
+        self.sector = self.game.mappe.sectors[self.sectorcount]
         self.sectorimg = pygame.image.load(self.sector.image)
         self.screen.blit(self.sectorimg,[0,0,600,400])
         
@@ -36,6 +36,7 @@ class PygameView:
                         
             self.screen.blit(self.sectorimg,self.charrect,self.charrect)
             self.screen.blit(self.sectorimg,[0,0,600,400])
+            self.charimage = pygame.image.load(self.character.image)
             self.screen.blit(self.charimage,self.charrect)
 
             # display Rewards
@@ -43,6 +44,7 @@ class PygameView:
             text = font.render('Munition: ' + str(self.character.rewardcount), 1, (10, 10, 10))
             textpos = text.get_rect(centerx=self.screen.get_width()/2)
             self.screen.blit(text, textpos)
+            
             if self.character.isalive:
                 print 'alive'
                 self.screen.blit(self.charimage,self.charrect)
@@ -79,6 +81,11 @@ class PygameView:
     
         if event == 'MoveEvent':
             self.charrect.topleft = (self.character.x,self.character.y)
+            
+        if event == 'ChangeSector':
+            self.sectorcount+=1
+            self.sector = self.game.mappe.sectors[self.sectorcount]
+            self.sectorimg = pygame.image.load(self.sector.image)
 
             
             

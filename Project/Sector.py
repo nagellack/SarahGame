@@ -5,7 +5,7 @@ import Reward
 
 class Sector:
     def __init__(self,identity,numObstacles,numEnemies,numRewards):
-        self.identity = 1 #identity
+        self.identity = identity+1
         self.image = "Sector"+str(self.identity)+".png"
         self.numObstacles = numObstacles
         self.obstacles = []
