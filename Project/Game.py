@@ -20,7 +20,7 @@ class Game:
         # daraufhin muss die gui anfangen die Welt zu erstellen
     
     def getCurrentSectors(self):
-         return self.mappe.getcurrentsector(self.charactor.x)
+         return self.mappe.getcurrentsector(self.charactor.absoultex)
         # hier bekommt man von map die aktuellen sectoren
         # damit kann man die hintergrundbilder + die positionen der obstacles bekommen
     
@@ -28,6 +28,11 @@ class Game:
         # anfragen ob es moeglich ist ein schritt weiter nach oben hinten oder hoch zu gehen
         currentS = self.getCurrentSectors()
         if self.charactor.move(direction,currentS):
+            if self.charactor.x >=600:
+                self.evManager.post("ChangeSector")
+                self.charactor.x=0
+            if self.charactor.x<0:
+                self.charactor.x=0
             self.evManager.post("MoveEvent")
     
     def Notify(self, event):

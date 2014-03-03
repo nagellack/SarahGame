@@ -51,6 +51,7 @@ class Charactor:
         if sector.hasObstacle([newx,newy],self.width,self.height)==0:
             self.y = newy
             self.x = newx
+            self.absoultex+=self.steplength
             self.image=self.jumpingright
         else:
             self.isjumping=0
@@ -67,6 +68,8 @@ class Charactor:
         if sector.hasObstacle([newx,newy],self.width,self.height)==0:
             self.y = newy
             self.x = newx
+            if self.x>=0:
+                    self.absoultex-=self.steplength
             self.image=self.jumpingleft
         else:
             self.isjumping=0
@@ -107,6 +110,7 @@ class Charactor:
                     self.rewardcount += 1
                 self.x = newx
                 self.y = newy
+                self.absoultex+=self.steplength
                 if self.isjumping==0:
                     if self.image!='sarahmove.png':
                         self.image='sarahmove.png'
@@ -124,6 +128,8 @@ class Charactor:
                 if sector.hasReward([newx,newy],self.width,self.height)==1:
                     self.rewardcount += 1
                 self.x = newx
+                if self.x>=0:
+                    self.absoultex-=self.steplength
                 self.y = newy
                 if self.isjumping==0:
                     if self.image!='sarahmovel.png':
