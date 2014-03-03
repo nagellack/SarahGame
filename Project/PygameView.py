@@ -36,7 +36,6 @@ class PygameView:
                         
             self.screen.blit(self.sectorimg,self.charrect,self.charrect)
             self.screen.blit(self.sectorimg,[0,0,600,400])
-<<<<<<< HEAD
             self.screen.blit(self.charimage,self.charrect)
 
             # display Rewards
@@ -44,14 +43,13 @@ class PygameView:
             text = font.render('Munition: ' + str(self.character.rewardcount), 1, (10, 10, 10))
             textpos = text.get_rect(centerx=self.screen.get_width()/2)
             self.screen.blit(text, textpos)
-=======
+
             if self.character.isalive:
                 print 'alive'
                 self.screen.blit(self.charimage,self.charrect)
             else:
                 print 'dead'
             
->>>>>>> fa2bdd049ba40796b137ebefd948c94b4bc6d248
             
             enemies = self.sector.enemies
             for i in range(len(enemies)):
