@@ -27,6 +27,10 @@ class KeyboardController:
                 if self.jumpstarted==10:
                     self.jumpstarted=0
                     self.evManager.post('Stopjump')
+            key = pygame.key.get_pressed()
+
+            if key[K_f] == 0:
+                self.evManager.post('NOFighting')
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_p:
                     ev = "Pause"
@@ -44,6 +48,7 @@ class KeyboardController:
                 if event.type == KEYDOWN and event.key == K_SPACE:
                     if self.jumpstarted==0:
                         self.jumpstarted = 1
+                        
                     """ev = "UpRequest"
                     print 'upreq'
                     key = pygame.key.get_pressed()

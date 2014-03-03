@@ -23,6 +23,8 @@ class Charactor:
         self.movingleft = 'sarahmovel.png'
         self.jumpingright = 'sarahjump.png'
         self.jumpingleft = 'sarahjumpl.png'
+        
+        self.ambulancex = 0
     
     def gravity(self, sector):
         if self.isjumping==0:
@@ -37,6 +39,10 @@ class Charactor:
         newy = self.y - self.jumpheight #(self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
         if sector.hasObstacle([self.x,newy],self.width,self.height)==0:
             self.y = newy
+            if self.image == self.movingright or self.image==self.standingright or self.image == self.jumpingright:
+                self.image = self.jumpingright
+            else:
+                self.image = self.jumpingleft
         else:
             self.isjumping=0
             return 0
@@ -87,17 +93,24 @@ class Charactor:
         #pruefen ob enemy sie trifft 
         #wenn sie nicht kaempft dann sterben
         #wenn sie kaempft dann enemy stirbt
-        for enemy in sector.enemies:
-            if (self.x<=(enemy.x-self.width) or self.x>=(enemy.x+enemy.width)) or (self.y<=(enemy.y-self.height) or self.y >= (enemy.y+enemy.height)):
-                self.isalive = 1
-            else:
-                if self.fighting:
-                    self.isalive=1
-                    enemy.isalive=0
+        if self.isalive:
+            for enemy in sector.enemies:
+                if (self.x<=(enemy.x-self.width) or self.x>=(enemy.x+enemy.width)) or (self.y<=(enemy.y-self.height) or self.y >= (enemy.y+enemy.height)):
+                    self.isalive = 1
                 else:
-                    self.isalive=0
-                    return 1
+                    if self.fighting:
+                        self.isalive=1
+                        sector.enemies.remove(enemy)
+                        enemy.alive=0
+                    else:
+                        self.isalive=0
+                        return 1
         return 0
+        
+    def faint(self):
+        self.isavlive = 0
+        self.image="sarahfaint.png"
+        self.ambulancex += 10
             
     
     
@@ -121,6 +134,8 @@ class Charactor:
                 self.gravity(sector)
                 self.isjumping=0
                 return 0
+            if self.fighting:
+                self.image = "sarahfight.png"
             
         if direction == "Left":
             newx = self.x - self.steplength
@@ -141,6 +156,9 @@ class Charactor:
                 self.gravity(sector)
                 self.isjumping=0
                 return 0
+                
+            if self.fighting:
+                self.image = "sarahfightl.png"
             
         if direction == "Up":
             newx = self.x 
@@ -154,6 +172,10 @@ class Charactor:
                 self.gravity(sector)
                 self.isjumping=0
                 return 0
+            if self.image == self.movingright or self.image==self.standingright:
+                self.image = self.jumpingright
+            else:
+                self.image = self.jumpingleft
             
         if direction == "Down":
             newx = self.x 
@@ -169,3 +191,13 @@ class Charactor:
                 return 0
                 
         return 1
+        
+    def hasFeetonTheGround(self,sector):
+        if self.isjumping==0:
+            for obst in sector.obstacles:
+                if (self.y+self.height==obst.y):
+                    print 'jump'
+                    return 1
+            return 0
+        return 1
+            
