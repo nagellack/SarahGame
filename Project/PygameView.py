@@ -58,10 +58,10 @@ class PygameView:
                     self.screen.blit(self.sectorimg,enemrect,enemrect)
                     self.screen.blit(enemimage,enemrect)
                     
-
             if self.character.isalive:
                 self.screen.blit(self.charimage,self.charrect)
             else:
+
                 self.evManager.post('Fainting')
                 ambulanceimg = pygame.image.load(self.ambulancename)
                 ambrect = ambulanceimg.get_rect()
@@ -73,9 +73,6 @@ class PygameView:
                 else:
                     self.ambulancename = "ambulance1.png"
                 
-            
-            
-            
             
             obstacles = self.sector.obstacles
             for obst in obstacles:
