@@ -44,6 +44,7 @@ class KeyboardController:
                 if event.type == KEYDOWN and event.key == K_SPACE:
                     if self.jumpstarted==0:
                         self.jumpstarted = 1
+                        
                     """ev = "UpRequest"
                     print 'upreq'
                     key = pygame.key.get_pressed()

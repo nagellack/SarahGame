@@ -190,3 +190,13 @@ class Charactor:
                 return 0
                 
         return 1
+        
+    def hasFeetonTheGround(self,sector):
+        if self.isjumping==0:
+            for obst in sector.obstacles:
+                if (self.y+self.height==obst.y):
+                    print 'jump'
+                    return 1
+            return 0
+        return 1
+            

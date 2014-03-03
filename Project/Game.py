@@ -55,8 +55,9 @@ class Game:
                 self.evManager.post("MoveEvent")
         elif event == "Jump":
             currentS = self.getCurrentSectors()
-            if self.charactor.jump(currentS):
-                self.evManager.post("MoveEvent")
+            if self.charactor.hasFeetonTheGround(currentS):
+                if self.charactor.jump(currentS):
+                    self.evManager.post("MoveEvent")
 
         elif event == "Enemy":
             currentS = self.getCurrentSectors()
@@ -67,12 +68,14 @@ class Game:
 
         elif event == "JumpRight":
             currentS = self.getCurrentSectors()
-            if self.charactor.jumpright(currentS):
-                self.evManager.post("MoveEvent")
+            if self.charactor.hasFeetonTheGround(currentS):
+                if self.charactor.jumpright(currentS):
+                    self.evManager.post("MoveEvent")
         elif event == "JumpLeft":
             currentS = self.getCurrentSectors()
-            if self.charactor.jumpleft(currentS):
-                self.evManager.post("MoveEvent")
+            if self.charactor.hasFeetonTheGround(currentS):
+                if self.charactor.jumpleft(currentS):
+                    self.evManager.post("MoveEvent")
         elif event == "Stopjump":
             self.charactor.stopjump()
         elif event == "Alive":
