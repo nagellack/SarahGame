@@ -9,8 +9,8 @@ class PygameView:
         pygame.init()
         self.screen = pygame.display.set_mode((600,400),DOUBLEBUF)
         self.screen.set_alpha(None)
-        
-        self.sector = self.game.mappe.sectors[0]
+        self.sectorcount = 0
+        self.sector = self.game.mappe.sectors[self.sectorcount]
         self.sectorimg = pygame.image.load(self.sector.image)
         self.screen.blit(self.sectorimg,[0,0,600,400])
         
@@ -82,6 +82,11 @@ class PygameView:
     
         if event == 'MoveEvent':
             self.charrect.topleft = (self.character.x,self.character.y)
+            
+        if event == 'ChangeSector':
+            self.sectorcount+=1
+            self.sector = self.game.mappe.sectors[self.sectorcount]
+            self.sectorimg = pygame.image.load(self.sector.image)
 
             
             
