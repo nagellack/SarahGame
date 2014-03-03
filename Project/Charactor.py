@@ -15,6 +15,13 @@ class Charactor:
         self.rewardcount = 0
         self.isalive = 1
         self.fighting = 0
+        
+        self.standingright = 'sarah.png'
+        self.standingleft = 'sarahl.png'
+        self.movingright = 'sarahmove.png'
+        self.movingleft = 'sarahmovel.png'
+        self.jumpingright = 'sarahjump.png'
+        self.jumpingleft = 'sarahjumpl.png'
     
     def gravity(self, sector):
         if self.isjumping==0:
@@ -44,6 +51,7 @@ class Charactor:
         if sector.hasObstacle([newx,newy],self.width,self.height)==0:
             self.y = newy
             self.x = newx
+            self.image=self.jumpingright
         else:
             self.isjumping=0
             return 0
@@ -59,6 +67,7 @@ class Charactor:
         if sector.hasObstacle([newx,newy],self.width,self.height)==0:
             self.y = newy
             self.x = newx
+            self.image=self.jumpingleft
         else:
             self.isjumping=0
             return 0
@@ -98,6 +107,11 @@ class Charactor:
                     self.rewardcount += 1
                 self.x = newx
                 self.y = newy
+                if self.isjumping==0:
+                    if self.image!='sarahmove.png':
+                        self.image='sarahmove.png'
+                    else:
+                        self.image='sarah.png'
             else:
                 self.gravity(sector)
                 self.isjumping=0
@@ -111,6 +125,11 @@ class Charactor:
                     self.rewardcount += 1
                 self.x = newx
                 self.y = newy
+                if self.isjumping==0:
+                    if self.image!='sarahmovel.png':
+                        self.image='sarahmovel.png'
+                    else:
+                        self.image='sarahl.png'
             else:
                 self.gravity(sector)
                 self.isjumping=0

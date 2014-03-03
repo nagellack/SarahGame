@@ -36,6 +36,7 @@ class PygameView:
                         
             self.screen.blit(self.sectorimg,self.charrect,self.charrect)
             self.screen.blit(self.sectorimg,[0,0,600,400])
+            self.charimage = pygame.image.load(self.character.image)
             self.screen.blit(self.charimage,self.charrect)
 
             # display Rewards
