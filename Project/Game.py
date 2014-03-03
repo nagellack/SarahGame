@@ -27,13 +27,14 @@ class Game:
     def processMoveRequest(self,direction):
         # anfragen ob es moeglich ist ein schritt weiter nach oben hinten oder hoch zu gehen
         currentS = self.getCurrentSectors()
-        if self.charactor.move(direction,currentS):
-            if self.charactor.x >=600:
-                self.evManager.post("ChangeSector")
-                self.charactor.x=0
-            if self.charactor.x<0:
-                self.charactor.x=0
-            self.evManager.post("MoveEvent")
+        if self.charactor.isalive:
+            if self.charactor.move(direction,currentS):
+                if self.charactor.x >=600:
+                    self.evManager.post("ChangeSector")
+                    self.charactor.x=0
+                if self.charactor.x<0:
+                    self.charactor.x=0
+                self.evManager.post("MoveEvent")
     
     def Notify(self, event):
         if event == "LeftRequest":
@@ -66,7 +67,6 @@ class Game:
 
         elif event == "JumpRight":
             currentS = self.getCurrentSectors()
-            print currentS
             if self.charactor.jumpright(currentS):
                 self.evManager.post("MoveEvent")
         elif event == "JumpLeft":
@@ -79,9 +79,13 @@ class Game:
             currentS = self.getCurrentSectors()
             self.charactor.isdying(currentS)
         elif event == "Fighting":
+            self.charactor.image = "sarahfight.png"
             self.charactor.fighting = 1
         elif event == "NOFighting":
-            print  'nofighting'
+            self.charactor.image = "sarah.png"
             self.charactor.fighting = 0
+        elif event == "Fainting":
+            self.charactor.faint()
+            
 
         

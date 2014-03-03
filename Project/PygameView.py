@@ -17,6 +17,8 @@ class PygameView:
         self.character = self.game.charactor
         self.charimage = pygame.image.load(self.character.image)
         
+        self.ambulancename = "ambulance1.png"
+        
         self.enemimages = []
         
         self.charrect = self.charimage.get_rect()
@@ -37,28 +39,41 @@ class PygameView:
             self.screen.blit(self.sectorimg,self.charrect,self.charrect)
             self.screen.blit(self.sectorimg,[0,0,600,400])
             self.charimage = pygame.image.load(self.character.image)
-            self.screen.blit(self.charimage,self.charrect)
+            if self.character.ambulancex < self.character.x:
+                self.screen.blit(self.charimage,self.charrect)
 
             # display Rewards
             font = pygame.font.Font(None, 36)
             text = font.render('Munition: ' + str(self.character.rewardcount), 1, (10, 10, 10))
             textpos = text.get_rect(centerx=self.screen.get_width()/2)
             self.screen.blit(text, textpos)
-
-            if self.character.isalive:
-                print 'alive'
-                self.screen.blit(self.charimage,self.charrect)
-            else:
-                print 'dead'
             
             
             enemies = self.sector.enemies
             for i in range(len(enemies)):
-                enemimage = self.enemimages[i]
-                enemrect = enemimage.get_rect()
-                enemrect.topleft = (enemies[i].x,enemies[i].y)
-                self.screen.blit(self.sectorimg,enemrect,enemrect)
-                self.screen.blit(enemimage,enemrect)
+                if enemies[i].alive:
+                    enemimage = self.enemimages[i]
+                    enemrect = enemimage.get_rect()
+                    enemrect.topleft = (enemies[i].x,enemies[i].y)
+                    self.screen.blit(self.sectorimg,enemrect,enemrect)
+                    self.screen.blit(enemimage,enemrect)
+                    
+
+            if self.character.isalive:
+                self.screen.blit(self.charimage,self.charrect)
+            else:
+                self.evManager.post('Fainting')
+                ambulanceimg = pygame.image.load(self.ambulancename)
+                ambrect = ambulanceimg.get_rect()
+                ambrect.topleft = (self.character.ambulancex,194)
+                self.screen.blit(self.sectorimg,ambrect,ambrect)
+                self.screen.blit(ambulanceimg,ambrect)
+                if self.ambulancename == "ambulance1.png":
+                    self.ambulancename = "ambulance2.png"
+                else:
+                    self.ambulancename = "ambulance1.png"
+                
+            
             
             
             
