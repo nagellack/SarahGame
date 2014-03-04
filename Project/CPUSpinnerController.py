@@ -1,5 +1,6 @@
 import EventManager
 import pygame
+import main
 
 class CPUSpinnerController:
 	"""..."""
@@ -19,6 +20,8 @@ class CPUSpinnerController:
 
 	#----------------------------------------------------------------------
 	def Notify(self, event):
-		if event == "QuitEvent":
-			#this will stop the while loop from running
-			self.keepGoing = False
+	   if event == "PlayAgain":
+	       self.keepGoing = False
+	       main.main()
+	   if event == "QuitEvent":
+	       self.keepGoing = False

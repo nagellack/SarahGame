@@ -36,29 +36,23 @@ class KeyboardController:
                     direction = "DIRECTION_LEFT"
                     ev = "LeftRequest"
                 if event.type == QUIT:
-                    ev = QuitEvent()
+                    ev = "QuitEvent"
                 if event.type == KEYDOWN and event.key == K_ESCAPE:
-                    ev = QuitEvent()
+                    ev = "QuitEvent"
                 if event.type == KEYDOWN and event.key == K_RIGHT:
                     ev = "RightRequest" 
                 if event.type == KEYDOWN and event.key == K_SPACE:
                     if self.jumpstarted==0:
                         self.jumpstarted = 1
-                        
-                    """ev = "UpRequest"
-                    print 'upreq'
-                    key = pygame.key.get_pressed()
-                    if key[K_RIGHT]:
-                        ev="RightUpRequest"
-                        print 'here'
-                    if key[K_LEFT]:
-                        ev="LeftUpRequest" """
                 if event.type == KEYDOWN and event.key == K_DOWN:
                     ev='DownRequest' 
                 if event.type == KEYDOWN and event.key == K_f:
                     ev='Fighting' 
                 if event.type == KEYUP and event.key == K_f:
-                    ev='NOFighting' 
+                    ev='NOFighting'
+                if event.type == KEYDOWN and event.key == K_r:
+                    ev='PlayAgainRequest' 
+                
                                                                  
         if ev:
             self.evManager.post( ev )

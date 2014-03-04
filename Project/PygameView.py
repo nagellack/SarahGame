@@ -18,17 +18,9 @@ class PygameView:
         self.charimage = pygame.image.load(self.character.image)
         
         self.ambulancename = "ambulance1.png"
-        
-        self.enemimages = []
-        
+                
         self.charrect = self.charimage.get_rect()
         self.charrect.topleft = (self.character.x,self.character.y)
-        
-        
-        enemies = self.sector.enemies
-        for enemy in enemies:
-            enemimage = pygame.image.load(enemy.image)
-            self.enemimages.append(enemimage)
             
         pygame.display.flip()
 
@@ -42,19 +34,13 @@ class PygameView:
             if self.character.ambulancex < self.character.x:
                 self.screen.blit(self.charimage,self.charrect)
 
-            # display Rewards
-            font = pygame.font.Font(None, 36)
-            text = font.render('Munition: ' + str(self.character.rewardcount), 1, (10, 10, 10))
-            textpos = text.get_rect(centerx=self.screen.get_width()/2)
-            self.screen.blit(text, textpos)
-            
             
             enemies = self.sector.enemies
-            for i in range(len(enemies)):
-                if enemies[i].alive:
-                    enemimage = self.enemimages[i]
+            for enemy in enemies:
+                if enemy.alive:
+                    enemimage = pygame.image.load(enemy.image)
                     enemrect = enemimage.get_rect()
-                    enemrect.topleft = (enemies[i].x,enemies[i].y)
+                    enemrect.topleft = (enemy.x,enemy.y)
                     self.screen.blit(self.sectorimg,enemrect,enemrect)
                     self.screen.blit(enemimage,enemrect)
                     
@@ -72,6 +58,12 @@ class PygameView:
                     self.ambulancename = "ambulance2.png"
                 else:
                     self.ambulancename = "ambulance1.png"
+                if self.character.ambulancex>=600:
+                    font = pygame.font.Font(None, 36)
+                    text = font.render('Press R to Restart', 1, (10, 10, 10))
+                    textpos = text.get_rect(centerx=self.screen.get_width()/2)
+                    self.screen.blit(text, textpos)
+                    
                 
             
             obstacles = self.sector.obstacles
@@ -97,8 +89,11 @@ class PygameView:
             
         if event == 'ChangeSector':
             self.sectorcount+=1
-            self.sector = self.game.mappe.sectors[self.sectorcount]
-            self.sectorimg = pygame.image.load(self.sector.image)
+            if self.sectorcount<10:
+                self.sector = self.game.mappe.sectors[self.sectorcount]
+                self.sectorimg = pygame.image.load(self.sector.image)
+            else:
+                self.sectorimg = pygame.image.load("party.png")
 
             
             

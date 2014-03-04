@@ -7,7 +7,10 @@ class Enemy:
         self.steplength = 5
         self.jumpheight = 15
         self.nailcolor = "Red"
-        self.image = 'pawlettchen.png'
+        if identity == 1:
+            self.image = 'pawlettchen.png'
+        if identity == 2:
+            self.image = 'Manimal.png'
         self.width = 20
         self.height = 40
         self.maximumjumpheight = 60

@@ -12,5 +12,5 @@ class Reward:
         
     def setwidthheigt(self):
         if self.identity==1:
-            self.width = 30
-            self.height = 60
+            self.width = 20
+            self.height = 40

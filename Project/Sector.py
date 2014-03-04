@@ -21,10 +21,14 @@ class Sector:
         self.initEnemies()
     
     def initObstacles(self):
+        xs = []
         for i in range(self.numObstacles):
-            obstid = 1 #random number
-            x = 300
-            y = 190
+            obstid = 1 #random.randrange(0, 3,1)
+            x = random.randrange(0, 600,1)
+            while x in xs:
+               x = random.randrange(100, 600,1)
+            xs.extend(list(range(x, x+31)))
+            y = 0
             self.obstacles.append(Obstacle.Obstacle(obstid,x,y))
         boden = Obstacle.Obstacle(-1,0,250)
         boden.width = 600
@@ -33,17 +37,28 @@ class Sector:
 
     def initRewards(self):
         element = 0
+        xs = []
+        ys = []
         for i in range(self.numRewards):
-            rewardid = 1
-            x = 150 + i*50
-            y = 190 + i*30
+            rewardid = 1 #i+1
+            x = random.randrange(0, 590,1)
+            y = random.randrange(150, 250,1)
+            while (x in xs) or (y in ys) or self.hasObstacle((x,y),20,40):
+                x = random.randrange(0, 600,1)
+                y = random.randrange(150, 250,1)
+            xs.extend(list(range(x, x+21)))
+            ys.extend(list(range(y, y+41)))  
             self.rewards.append(Reward.Reward(rewardid,x,y,element+i))
 
     
     def initEnemies(self):
+        xs = []
         for i in range(self.numEnemies):
-            enemyid = i #random number
+            enemyid = random.randrange(1, 3,1)
             x = random.randrange(0, 600,1)
+            while (x in xs) or self.hasObstacle((x,210),20,40):
+               x = random.randrange(0, 600,1)
+            xs.extend(list(range(x, x+21))) 
             self.enemies.append(Enemy.Enemy(enemyid,x))
             
     def hasObstacle(self,desiredPosition,charwidth,charheight):

@@ -12,3 +12,4 @@ class Obstacle:
         if self.identity==1:
             self.width = 30
             self.height = 60
+            self.y = 250-self.height

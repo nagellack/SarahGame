@@ -5,10 +5,7 @@ import KeyboardController
 import CPUSpinnerController
 
 
-
-
-if __name__ == "__main__":
-	"""..."""
+def main():
 	evManager = EventManager.EventManager()
 
 	keybd = KeyboardController.KeyboardController( evManager )
@@ -17,4 +14,9 @@ if __name__ == "__main__":
 	pygameView = PygameView.PygameView( evManager,game )
 	
 	
-	spinner.Run()
+	spinner.Run()    
+
+
+
+if __name__ == "__main__":
+    main()

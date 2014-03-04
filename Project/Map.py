@@ -1,5 +1,5 @@
 import Sector
-
+import random
 class Map:
     def __init__(self):
         self.sectors = []
@@ -7,9 +7,9 @@ class Map:
     
     def initSectors(self):
         for sectorid in range(5):
-            numberofObstacles=1 #sollte random nummer 0-3 sein
-            numberofEnemies=3
-            numberofRewards = 2
+            numberofObstacles=random.randrange(1, 4,1)
+            numberofEnemies=random.randrange(1, 4,1)
+            numberofRewards = random.randrange(1, 6,1)
             sector = Sector.Sector(sectorid,numberofObstacles,numberofEnemies,numberofRewards)
             self.sectors.append(sector)
     
