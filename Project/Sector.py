@@ -22,7 +22,7 @@ class Sector:
     def initObstacles(self):
         xs = []
         for i in range(self.numObstacles):
-            obstid = 1 #random.randrange(0, 3,1)
+            obstid = random.randrange(1,3,1)
             x = random.randrange(150, 520,1)
             while x in xs:
                x = random.randrange(150, 520,1)

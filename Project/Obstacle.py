@@ -13,3 +13,12 @@ class Obstacle:
             self.width = 30
             self.height = 60
             self.y = 250-self.height
+        if self.identity==2:
+            self.width = 40
+            self.height = 40
+            self.y = 250-self.height
+            
+        if self.identity==3:
+            self.width = 20
+            self.height = 20
+            self.y = 250-self.height
