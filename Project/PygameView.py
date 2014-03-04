@@ -14,7 +14,7 @@ class PygameView:
         self.sectorimg = pygame.image.load(self.sector.image)
         self.screen.blit(self.sectorimg,[0,0,600,400])
 
-        self.ispause = self.game.ispause
+        self.ispause = 0
         self.pauseimg = pygame.image.load(self.sector.pauseimage)
         
         self.character = self.game.charactor
@@ -39,6 +39,22 @@ class PygameView:
                 self.charimage = pygame.image.load(self.character.image)
                 if self.character.ambulancex < self.character.x:
                     self.screen.blit(self.charimage,self.charrect)
+                    
+                obstacles = self.sector.obstacles
+                for obst in obstacles:
+                    obstimage = pygame.image.load(obst.image)
+                    obstrect = obstimage.get_rect()
+                    obstrect.topleft = (obst.x,obst.y)
+                    self.screen.blit(self.sectorimg,obstrect,obstrect)
+                    self.screen.blit(obstimage, obstrect)
+    
+                rewards = self.sector.rewards
+                for rew in rewards:
+                    rewimage = pygame.image.load(rew.image)
+                    rewrect = rewimage.get_rect()
+                    rewrect.topleft = (rew.x,rew.y)
+                    self.screen.blit(self.sectorimg,rewrect,rewrect)
+                    self.screen.blit(rewimage, rewrect)
                 
                 
                 enemies = self.sector.enemies
@@ -70,22 +86,7 @@ class PygameView:
                         textpos = text.get_rect(centerx=self.screen.get_width()/2)
                         self.screen.blit(text, textpos)
                     
-                    
-                obstacles = self.sector.obstacles
-                for obst in obstacles:
-                    obstimage = pygame.image.load(obst.image)
-                    obstrect = obstimage.get_rect()
-                    obstrect.topleft = (obst.x,obst.y)
-                    self.screen.blit(self.sectorimg,obstrect,obstrect)
-                    self.screen.blit(obstimage, obstrect)
-    
-                rewards = self.sector.rewards
-                for rew in rewards:
-                    rewimage = pygame.image.load(rew.image)
-                    rewrect = rewimage.get_rect()
-                    rewrect.topleft = (rew.x,rew.y)
-                    self.screen.blit(self.sectorimg,rewrect,rewrect)
-                    self.screen.blit(rewimage, rewrect)
+
 
             pygame.display.flip()
     
@@ -98,7 +99,7 @@ class PygameView:
                 self.sector = self.game.mappe.sectors[self.sectorcount]
                 self.sectorimg = pygame.image.load(self.sector.image)
             else:
-                self.sectorimg = pygame.image.load("party.png")
+                self.sectorimg = pygame.image.load("Party.png")
 
             
             

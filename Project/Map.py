@@ -7,8 +7,8 @@ class Map:
     
     def initSectors(self):
         for sectorid in range(5):
-            numberofObstacles=random.randrange(1, 4,1)
-            numberofEnemies=random.randrange(1, 4,1)
+            numberofObstacles=random.randrange(1,4,1)
+            numberofEnemies=random.randrange(1,4,1)
             numberofRewards = random.randrange(1, 6,1)
             sector = Sector.Sector(sectorid,numberofObstacles,numberofEnemies,numberofRewards)
             self.sectors.append(sector)
