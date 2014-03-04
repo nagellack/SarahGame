@@ -50,42 +50,42 @@ class PygameView:
                         self.screen.blit(self.sectorimg,enemrect,enemrect)
                         self.screen.blit(enemimage,enemrect)
                         
-            if self.character.isalive:
-                self.screen.blit(self.charimage,self.charrect)
-            else:
-
-                self.evManager.post('Fainting')
-                ambulanceimg = pygame.image.load(self.ambulancename)
-                ambrect = ambulanceimg.get_rect()
-                ambrect.topleft = (self.character.ambulancex,194)
-                self.screen.blit(self.sectorimg,ambrect,ambrect)
-                self.screen.blit(ambulanceimg,ambrect)
-                if self.ambulancename == "ambulance1.png":
-                    self.ambulancename = "ambulance2.png"
+                if self.character.isalive:
+                    self.screen.blit(self.charimage,self.charrect)
                 else:
-                    self.ambulancename = "ambulance1.png"
-                if self.character.ambulancex>=600:
-                    font = pygame.font.Font(None, 36)
-                    text = font.render('Press R to Restart', 1, (10, 10, 10))
-                    textpos = text.get_rect(centerx=self.screen.get_width()/2)
-                    self.screen.blit(text, textpos)
-                
-                
-            obstacles = self.sector.obstacles
-            for obst in obstacles:
-                obstimage = pygame.image.load(obst.image)
-                obstrect = obstimage.get_rect()
-                obstrect.topleft = (obst.x,obst.y)
-                self.screen.blit(self.sectorimg,obstrect,obstrect)
-                self.screen.blit(obstimage, obstrect)
-
-            rewards = self.sector.rewards
-            for rew in rewards:
-                rewimage = pygame.image.load(rew.image)
-                rewrect = rewimage.get_rect()
-                rewrect.topleft = (rew.x,rew.y)
-                self.screen.blit(self.sectorimg,rewrect,rewrect)
-                self.screen.blit(rewimage, rewrect)
+    
+                    self.evManager.post('Fainting')
+                    ambulanceimg = pygame.image.load(self.ambulancename)
+                    ambrect = ambulanceimg.get_rect()
+                    ambrect.topleft = (self.character.ambulancex,194)
+                    self.screen.blit(self.sectorimg,ambrect,ambrect)
+                    self.screen.blit(ambulanceimg,ambrect)
+                    if self.ambulancename == "ambulance1.png":
+                        self.ambulancename = "ambulance2.png"
+                    else:
+                        self.ambulancename = "ambulance1.png"
+                    if self.character.ambulancex>=600:
+                        font = pygame.font.Font(None, 36)
+                        text = font.render('Press R to Restart', 1, (10, 10, 10))
+                        textpos = text.get_rect(centerx=self.screen.get_width()/2)
+                        self.screen.blit(text, textpos)
+                    
+                    
+                obstacles = self.sector.obstacles
+                for obst in obstacles:
+                    obstimage = pygame.image.load(obst.image)
+                    obstrect = obstimage.get_rect()
+                    obstrect.topleft = (obst.x,obst.y)
+                    self.screen.blit(self.sectorimg,obstrect,obstrect)
+                    self.screen.blit(obstimage, obstrect)
+    
+                rewards = self.sector.rewards
+                for rew in rewards:
+                    rewimage = pygame.image.load(rew.image)
+                    rewrect = rewimage.get_rect()
+                    rewrect.topleft = (rew.x,rew.y)
+                    self.screen.blit(self.sectorimg,rewrect,rewrect)
+                    self.screen.blit(rewimage, rewrect)
 
             pygame.display.flip()
     
