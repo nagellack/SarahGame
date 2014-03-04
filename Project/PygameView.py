@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import Game
+
 class PygameView:
     def __init__(self, evManager,game):
         self.evManager = evManager
@@ -24,6 +25,8 @@ class PygameView:
                 
         self.charrect = self.charimage.get_rect()
         self.charrect.topleft = (self.character.x,self.character.y)
+        
+        self.win = 0
             
         pygame.display.flip()
 
@@ -33,6 +36,11 @@ class PygameView:
         if event == "TickEvent":
             if self.game.ispause == 1:
                 self.screen.blit(self.pauseimg,[0,0,600,400])
+            elif self.win:
+                self.screen.blit(self.sectorimg,self.charrect,self.charrect)
+                self.screen.blit(self.sectorimg,[0,0,600,400])
+                self.charimage = pygame.image.load(self.character.image)
+                self.screen.blit(self.charimage,self.charrect)
             else:
                 self.screen.blit(self.sectorimg,self.charrect,self.charrect)
                 self.screen.blit(self.sectorimg,[0,0,600,400])
@@ -95,11 +103,16 @@ class PygameView:
             
         if event == 'ChangeSector':
             self.sectorcount+=1
-            if self.sectorcount<10:
+            if self.sectorcount<8:
                 self.sector = self.game.mappe.sectors[self.sectorcount]
                 self.sectorimg = pygame.image.load(self.sector.image)
             else:
                 self.sectorimg = pygame.image.load("Party.png")
+                self.win=1
+                pygame.mixer.init()
+                pygame.mixer.music.load("indaclub.mp3")
+                pygame.mixer.music.play()
+                
 
             
             
