@@ -97,7 +97,7 @@ class Game:
         elif event == "Fainting":
             self.charactor.faint()
         elif event == "PlayAgainRequest":
-            if self.charactor.isalive==0:
+            if self.charactor.isalive==0 and self.charactor.ambulancex>=600:
                 self.evManager.post("PlayAgain")
             
 

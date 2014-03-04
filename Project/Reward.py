@@ -1,7 +1,7 @@
 class Reward:
     def __init__(self,identity,x,y,element):
         self.identity = identity
-        self.image = "Reward"+str(identity)+".png"
+        self.image = "Reward"+str(self.identity)+".png"
         self.x = x
         self.y = y
         self.width = 0

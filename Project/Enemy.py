@@ -3,14 +3,16 @@ class Enemy:
         self.name = "Pawlettchen"
         self.x = xpos
         self.absoultex = self.x
-        self.y = 210
+        
         self.steplength = 5
         self.jumpheight = 15
         self.nailcolor = "Red"
         if identity == 1:
             self.image = 'pawlettchen.png'
+            self.y = 210
         if identity == 2:
             self.image = 'Manimal.png'
+            self.y = 150
         self.width = 20
         self.height = 40
         self.maximumjumpheight = 60
