@@ -3,6 +3,7 @@ import Enemy
 import random
 import Reward
 
+
 class Sector:
     def __init__(self,identity,numObstacles,numEnemies,numRewards):
         self.identity = identity+1
@@ -41,7 +42,7 @@ class Sector:
         xs = []
         ys = []
         for i in range(self.numRewards):
-            rewardid = 1 #i+1
+            rewardid = random.randrange(1,3,1) #i+1
             x = random.randrange(0, 590,1)
             y = random.randrange(150, 250,1)
             while (x in xs) or (y in ys) or self.hasObstacle((x,y),20,40):
@@ -86,11 +87,19 @@ class Sector:
             if (desx <= (rew.x-charwidth) or desx >= (rew.x+rew.width)) or (desy <= (rew.y-charheight) or desy >= (rew.y+rew.height)):
                 possibility = 0
             else:
-                print "hit"
-                print rew
-                del self.rewards[rewcounter]
-                possibility = 1
+                if rew.identity == 1:
+                    print rew
+                    del self.rewards[rewcounter]
+                    possibility = 1
+                    return possibility
+                elif rew.identity ==2:
+                    print "hit"
+                    print rew
+                    del self.rewards[rewcounter]
+                    possibility = 2
+                    print possibility
+                    return possibility
             rewcounter += 1
-        return possibility
+       # return possibility
 
             

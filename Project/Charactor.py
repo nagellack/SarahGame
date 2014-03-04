@@ -13,6 +13,8 @@ class Charactor:
         self.maximumjumpheight = 60
         self.isjumping = 0
         self.rewardcount = 0
+        self.reward1 = 0
+        self.reward2 = 0
         self.isalive = 1
         self.fighting = 0
     
@@ -120,8 +122,20 @@ class Charactor:
             newx = self.x + self.steplength
             newy = self.y
             if sector.hasObstacle([newx,newy],self.width,self.height)==0:
-                if sector.hasReward([newx,newy],self.width,self.height)==1:
-                    self.rewardcount += 1
+                a_temp = sector.hasReward([newx,newy],self.width,self.height)
+                if a_temp == 1:
+                    self.reward1 += 1
+                    print "1st case"
+                if a_temp == 2:
+                    self.reward2 += 1
+                    print "2nd case"
+##                if sector.hasReward([newx,newy],self.width,self.height)==2:
+##                    print 'Halleluja'
+##                    self.rewardcount += 1
+##                    print self.rewardcount
+##                if sector.hasReward([newx,newy],self.width,self.height)==1:
+##                    self.rewardcount += 1
+##                    print self.rewardcount
                 self.x = newx
                 self.y = newy
                 self.absoultex+=self.steplength
@@ -141,8 +155,20 @@ class Charactor:
             newx = self.x - self.steplength
             newy = self.y
             if sector.hasObstacle([newx,newy],self.width,self.height)==0:
-                if sector.hasReward([newx,newy],self.width,self.height)==1:
-                    self.rewardcount += 1
+                a_temp = sector.hasReward([newx,newy],self.width,self.height)
+                if a_temp == 1:
+                    self.reward1 += 1
+                    print "1st case"
+                if a_temp == 2:
+                    self.reward2 += 1
+                    print "2nd case"
+##                if sector.hasReward([newx,newy],self.width,self.height)==2:
+##                    print 'Halleluja'
+##                    self.rewardcount += 1
+##                    print self.rewardcount
+##                if sector.hasReward([newx,newy],self.width,self.height)==1:
+##                    self.rewardcount += 1
+##                    print self.rewardcount  
                 self.x = newx
                 if self.x>=0:
                     self.absoultex-=self.steplength
@@ -164,8 +190,20 @@ class Charactor:
             newx = self.x 
             newy = self.y - self.jumpheight #(self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
             if sector.hasObstacle([newx,newy],self.width,self.height)==0:
-                if sector.hasReward([newx,newy],self.width,self.height)==1:
-                    self.rewardcount += 1
+                a_temp = sector.hasReward([newx,newy],self.width,self.height)
+                if a_temp == 1:
+                    self.reward1 += 1
+                    print "1st case"
+                if a_temp == 2:
+                    self.reward2 += 1
+                    print "2nd case"
+##                if sector.hasReward([newx,newy],self.width,self.height)==2:
+##                    print 'Halleluja'
+##                    self.rewardcount += 1
+##                    print self.rewardcount
+##                if sector.hasReward([newx,newy],self.width,self.height)==1:
+##                    self.rewardcount += 1
+##                    print self.rewardcount  
                 self.x = newx
                 self.y = newy
             else:
@@ -181,8 +219,20 @@ class Charactor:
             newx = self.x 
             newy = self.y + self.jumpheight #(self.isjumping/2 - (self.maximumjumpheight)**0.5 )**2-self.maximumjumpheight
             if sector.hasObstacle([newx,newy],self.width,self.height)==0:
-                if sector.hasReward([newx,newy],self.width,self.height)==1:
-                    self.rewardcount += 1
+                a_temp = sector.hasReward([newx,newy],self.width,self.height)
+                if a_temp == 1:
+                    self.reward1 += 1
+                    print "1st case"
+                if a_temp == 2:
+                    self.reward2 += 1
+                    print "2nd case"
+##                if sector.hasReward([newx,newy],self.width,self.height)==2:
+##                    print 'Halleluja'
+##                    self.rewardcount += 1
+##                    print self.rewardcount
+##                if sector.hasReward([newx,newy],self.width,self.height)==1:
+##                    self.rewardcount += 1
+##                    print self.rewardcount  
                 self.x = newx
                 self.y = newy
             else:

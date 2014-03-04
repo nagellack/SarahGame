@@ -33,6 +33,31 @@ class PygameView:
         if event == "TickEvent":
             if self.game.ispause == 1:
                 self.screen.blit(self.pauseimg,[0,0,600,400])
+                font = pygame.font.Font(None, 36)
+                text1 = font.render(str(self.character.reward1), 1, (255, 255, 10))
+                text2 = font.render(str(self.character.reward2), 1, (255, 255, 10))
+                textRect1 = text1.get_rect()
+                textRect2 = text2.get_rect()
+                textRect1.centerx = 200
+                textRect1.centery = 200
+                textRect2.centerx = 200
+                textRect2.centery = 250
+                self.screen.blit(text1,textRect1)
+                self.screen.blit(text2,textRect2)
+                rewimage1 = pygame.image.load('Reward1.png')
+                rewimage2 = pygame.image.load('Reward2.png')
+                rewrect1 = rewimage1.get_rect()
+                rewrect2 = rewimage2.get_rect()
+                rewrect1.topleft = (230,180)
+                rewrect2.topleft = (230,230)
+                self.screen.blit(self.pauseimg,rewrect1,rewrect1)
+                self.screen.blit(self.pauseimg,rewrect2,rewrect2)
+                self.screen.blit(rewimage1, rewrect1)
+                self.screen.blit(rewimage2, rewrect2)
+
+                print self.character.reward1
+                print self.character.reward2
+                print "--------------------"
             else:
                 self.screen.blit(self.sectorimg,self.charrect,self.charrect)
                 self.screen.blit(self.sectorimg,[0,0,600,400])
