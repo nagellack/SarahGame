@@ -6,15 +6,13 @@ import CPUSpinnerController
 
 
 def main():
-	evManager = EventManager.EventManager()
-
-	keybd = KeyboardController.KeyboardController( evManager )
-	spinner = CPUSpinnerController.CPUSpinnerController( evManager )
-	game = Game.Game( evManager )
-	pygameView = PygameView.PygameView( evManager,game )
-	
-	
-	spinner.Run()    
+    evManager = EventManager.EventManager()
+    game = Game.Game( evManager )
+    keybd = KeyboardController.KeyboardController( evManager )
+    spinner = CPUSpinnerController.CPUSpinnerController( evManager )
+    pygameView = PygameView.PygameView( evManager,game )
+    
+    spinner.Run()    
 
 
 

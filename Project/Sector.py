@@ -12,12 +12,10 @@ class Sector:
         self.numObstacles = numObstacles
         self.obstacles = []
         self.initObstacles()
-
         # rewards
         self.numRewards = numRewards
         self.rewards = []
         self.initRewards()
-
         self.numEnemies= numEnemies
         self.enemies = []
         self.initEnemies()
@@ -25,11 +23,12 @@ class Sector:
     def initObstacles(self):
         xs = []
         for i in range(self.numObstacles):
-            obstid = 1 #random.randrange(0, 3,1)
+            obstid = random.randrange(1,4,1)
             x = random.randrange(150, 520,1)
             while x in xs:
                x = random.randrange(150, 520,1)
-            xs.extend(list(range(x, x+31)))
+            xs.extend(range(x, x+35))
+            xs.extend(range(x-35, x))
             y = 0
             self.obstacles.append(Obstacle.Obstacle(obstid,x,y))
         boden = Obstacle.Obstacle(-1,0,250)
@@ -45,13 +44,14 @@ class Sector:
             rewardid = random.randrange(1,3,1) #i+1
             x = random.randrange(0, 590,1)
             y = random.randrange(150, 250,1)
-            while (x in xs) or (y in ys) or self.hasObstacle((x,y),20,40):
+            while ((x in xs) and (y in ys)) or self.hasObstacle((x,y),20,40):
                 x = random.randrange(0, 590,1)
                 y = random.randrange(150, 250,1)
-            xs.extend(list(range(x, x+21)))
-            ys.extend(list(range(y, y+41)))  
+            xs.extend(range(x, x+21))
+            ys.extend(range(y, y+41))  
+            xs.extend(range(x-21,x))
+            ys.extend(range(y-41,y)) 
             self.rewards.append(Reward.Reward(rewardid,x,y,element+i))
-
     
     def initEnemies(self):
         xs = []
@@ -60,7 +60,8 @@ class Sector:
             x = random.randrange(0, 600,1)
             while (x in xs) or self.hasObstacle((x,210),20,40):
                x = random.randrange(0, 600,1)
-            xs.extend(list(range(x, x+21))) 
+            xs.extend(range(x, x+21))
+            xs.extend(range(x-21,x)) 
             self.enemies.append(Enemy.Enemy(enemyid,x))
             
     def hasObstacle(self,desiredPosition,charwidth,charheight):
