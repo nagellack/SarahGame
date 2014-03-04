@@ -32,6 +32,10 @@ class KeyboardController:
             if key[K_f] == 0:
                 self.evManager.post('NOFighting')
             for event in pygame.event.get():
+                if event.type == KEYDOWN and event.key == K_p:
+                    ev = "Pause"
+                if event.type == KEYUP and event.key == K_p:
+                    ev = "noPause"
                 if event.type == KEYDOWN and event.key == K_LEFT:
                     direction = "DIRECTION_LEFT"
                     ev = "LeftRequest"

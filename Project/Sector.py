@@ -7,6 +7,7 @@ class Sector:
     def __init__(self,identity,numObstacles,numEnemies,numRewards):
         self.identity = identity+1
         self.image = "Sector"+str(self.identity)+".png"
+        self.pauseimage = "Pause.png"
         self.numObstacles = numObstacles
         self.obstacles = []
         self.initObstacles()
@@ -24,9 +25,9 @@ class Sector:
         xs = []
         for i in range(self.numObstacles):
             obstid = 1 #random.randrange(0, 3,1)
-            x = random.randrange(0, 600,1)
+            x = random.randrange(150, 520,1)
             while x in xs:
-               x = random.randrange(100, 600,1)
+               x = random.randrange(150, 520,1)
             xs.extend(list(range(x, x+31)))
             y = 0
             self.obstacles.append(Obstacle.Obstacle(obstid,x,y))
@@ -44,7 +45,7 @@ class Sector:
             x = random.randrange(0, 590,1)
             y = random.randrange(150, 250,1)
             while (x in xs) or (y in ys) or self.hasObstacle((x,y),20,40):
-                x = random.randrange(0, 600,1)
+                x = random.randrange(0, 590,1)
                 y = random.randrange(150, 250,1)
             xs.extend(list(range(x, x+21)))
             ys.extend(list(range(y, y+41)))  
